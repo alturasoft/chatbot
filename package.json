@@ -1,0 +1,14 @@
+{
+  "name": "n8n-chatbot-web",
+  "version": "1.0.0",
+  "description": "Interfaz Web Moderna y Premium para ChatBot conectada a n8n en VPS",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "tunnel": "node scripts/openwa_tunnel.js"
+  },
+  "keywords": ["n8n", "chatbot", "ai", "webhook", "mcp"],
+  "author": "Antigravity & Ogonzales",
+  "license": "MIT"
+}

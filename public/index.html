@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>n8n AI ChatBot | Asistente Inteligente en VPS</title>
+  <meta name="description" content="Interfaz web moderna, fluida y de alta estética conectada en tiempo real a tu instancia de n8n en desarrollo-n8n.hostlapaz.com.">
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow layers -->
+  <div class="ambient-glow ambient-glow-1"></div>
+  <div class="ambient-glow ambient-glow-2"></div>
+
+  <!-- App Wrapper -->
+  <div class="app-container" id="app-container">
+    
+    <!-- Top Header -->
+    <header class="chat-header" id="chat-header">
+      <div class="header-left">
+        <div class="bot-avatar-container">
+          <div class="bot-avatar">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 8V4H8"></path>
+              <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+              <path d="M2 14h2"></path>
+              <path d="M20 14h2"></path>
+              <path d="M15 13v2"></path>
+              <path d="M9 13v2"></path>
+            </svg>
+          </div>
+          <span class="status-indicator online" id="status-dot" title="n8n VPS Online"></span>
+        </div>
+        <div class="header-info">
+          <div class="title-row">
+            <h1 class="header-title">n8n AI Assistant</h1>
+            <span class="badge badge-vps" id="vps-badge">VPS Live</span>
+          </div>
+          <div class="header-subtitle">
+            <span id="header-status-text">Conectado a desarrollo-n8n.hostlapaz.com</span>
+            <span class="latency-pill" id="latency-display">-- ms</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="btn-sound-toggle" title="Alternar Sonido" aria-label="Alternar sonido">
+          <svg class="sound-on-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-clear-chat" title="Limpiar Conversación" aria-label="Limpiar chat">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18"></path>
+            <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+            <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+          </svg>
+        </button>
+        <button type="button" class="icon-btn" id="btn-open-settings" title="Ajustes de Conexión" aria-label="Configuración">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Messages Scroll Area -->
+    <main class="chat-main" id="chat-main">
+      <div class="messages-container" id="messages-container">
+        
+        <!-- Welcome Hero View (hidden once conversation starts) -->
+        <section class="welcome-hero" id="welcome-hero">
+          <div class="welcome-icon-box">
+            <div class="welcome-icon-ring"></div>
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+            </svg>
+          </div>
+          <h2 class="welcome-title">Bienvenido a tu ChatBot</h2>
+          <p class="welcome-description">
+            Conectado directamente a tu motor de automatización <strong>n8n</strong> en 
+            <span class="code-pill">desarrollo-n8n.hostlapaz.com</span>. Cada mensaje viaja al webhook y se procesa en tiempo real.
+          </p>
+
+          <div class="pills-title">Sugerencias rápidas para comenzar:</div>
+          <div class="prompt-pills" id="prompt-pills">
+            <button type="button" class="pill-btn" data-prompt="Hola, ¿estás funcionando correctamente en mi VPS?">
+              ⚡ Probar conexión con VPS
+            </button>
+            <button type="button" class="pill-btn" data-prompt="¿Qué datos me devuelve el webhook de n8n?">
+              🔍 Ver datos del webhook
+            </button>
+            <button type="button" class="pill-btn" data-prompt="¿Cómo conecto OpenAI o Gemini en este workflow de n8n?">
+              🤖 Conectar IA (OpenAI / Gemini)
+            </button>
+            <button type="button" class="pill-btn" data-prompt="Muéstrame un ejemplo de función en JavaScript para procesar textos.">
+              💻 Ejemplo de código
+            </button>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- Typing Indicator -->
+      <div class="typing-indicator-container hidden" id="typing-indicator" aria-live="polite">
+        <div class="typing-avatar">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect width="16" height="12" x="4" y="8" rx="2"></rect>
+            <path d="M12 8V4H8"></path>
+          </svg>
+        </div>
+        <div class="typing-bubble">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-text">n8n está procesando...</span>
+        </div>
+      </div>
+
+      <!-- Floating Scroll-To-Bottom Button -->
+      <button type="button" class="scroll-bottom-btn hidden" id="btn-scroll-bottom" title="Ir al mensaje más reciente">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
+    </main>
+
+    <!-- Chat Footer & Input Form -->
+    <footer class="chat-footer">
+      <form class="input-form" id="chat-form">
+        <div class="input-container">
+          <textarea 
+            id="user-input" 
+            class="chat-textarea" 
+            placeholder="Escribe un mensaje aquí... (Shift + Enter para nueva línea)" 
+            rows="1" 
+            maxlength="2000"
+            required></textarea>
+
+          <button type="submit" class="send-btn" id="btn-send" title="Enviar Mensaje" aria-label="Enviar mensaje">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
+        <div class="input-helper">
+          <span>Presiona <strong>Enter</strong> para enviar &bull; <strong>Shift + Enter</strong> para salto de línea</span>
+          <span id="char-counter" class="char-counter">0 / 2000</span>
+        </div>
+      </form>
+    </footer>
+
+  </div>
+
+  <!-- Settings Modal Dialog -->
+  <div class="modal-backdrop hidden" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title-wrap">
+          <div class="modal-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h3 id="modal-title" class="modal-title">Configuración de n8n</h3>
+        </div>
+        <button type="button" class="icon-btn modal-close-btn" id="btn-close-modal" aria-label="Cerrar ventana">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Webhook URL field -->
+        <div class="form-group">
+          <label for="setting-webhook-url" class="form-label">URL del Webhook de n8n</label>
+          <input 
+            type="url" 
+            id="setting-webhook-url" 
+            class="form-input" 
+            placeholder="https://desarrollo-n8n.hostlapaz.com/webhook/chatbot" 
+            value="https://desarrollo-n8n.hostlapaz.com/webhook/chatbot">
+          <span class="form-hint">Endpoint al que se envían las peticiones HTTP POST con tu mensaje.</span>
+        </div>
+
+        <!-- Connection mode -->
+        <div class="form-group">
+          <label class="form-label">Modo de Enrutamiento</label>
+          <div class="radio-cards">
+            <label class="radio-card active" id="label-mode-proxy">
+              <input type="radio" name="route-mode" value="proxy" id="mode-proxy" checked>
+              <div class="radio-card-content">
+                <span class="radio-card-title">Proxy Local (Recomendado)</span>
+                <span class="radio-card-desc">Evita problemas de CORS en el navegador comunicándose a través del servidor local.</span>
+              </div>
+            </label>
+            <label class="radio-card" id="label-mode-direct">
+              <input type="radio" name="route-mode" value="direct" id="mode-direct">
+              <div class="radio-card-content">
+                <span class="radio-card-title">Directo a n8n</span>
+                <span class="radio-card-desc">Llama directamente al endpoint de tu VPS desde el navegador.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Session ID field -->
+        <div class="form-group">
+          <label for="setting-session-id" class="form-label">ID de Sesión (Memoria de Conversación)</label>
+          <div class="input-with-button">
+            <input type="text" id="setting-session-id" class="form-input" value="session_user_1">
+            <button type="button" class="secondary-btn" id="btn-regenerate-session" title="Generar nueva sesión">
+              Regenerar
+            </button>
+          </div>
+          <span class="form-hint">Permite al nodo de memoria en n8n recordar el hilo de la charla.</span>
+        </div>
+
+        <!-- Ping & Health Check Test Box -->
+        <div class="test-connection-box">
+          <div class="test-header">
+            <span>Diagnóstico de Conectividad VPS</span>
+            <button type="button" class="test-btn" id="btn-ping-test">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+              </svg>
+              Probar Ping
+            </button>
+          </div>
+          <div class="test-result" id="test-result-box">
+            Presiona "Probar Ping" para verificar la conexión con tu VPS.
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="secondary-btn" id="btn-reset-settings">Restablecer</button>
+        <button type="button" class="primary-btn" id="btn-save-settings">Guardar Cambios</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification hidden" id="toast-notification" role="status">
+    <span class="toast-message" id="toast-text"></span>
+  </div>
+
+  <!-- Main JavaScript Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
